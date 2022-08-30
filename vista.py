@@ -21,3 +21,16 @@ def menu_principal():
     opcion = input("Ingrese una opción: ")
 
     return opcion
+
+def visualizador_de_datos():
+    """Opciones para Visualizador Datos"""
+
+    print("***********Visualizador de Datos***********")
+    print()
+    print("(1) Resumen")
+    print("(2) Gráfico de ticker")
+    print("(0) Volver")
+
+    opcion = input("Ingrese una opción: ")
+
+    return opcion
