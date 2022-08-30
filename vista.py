@@ -11,7 +11,12 @@ def presentacion():
     print()
 
 def menu_principal():
-    """Opciones del Menú Principal"""
+    """
+    Opciones del Menú Principal
+    
+        Returns:
+            opcion (str): String con la opción elegida
+    """
     
     print("*******MENÚ PRINCIPAL****************")
     print("(1) Actualización de Datos")
@@ -23,7 +28,12 @@ def menu_principal():
     return opcion
 
 def visualizador_de_datos():
-    """Opciones para Visualizador Datos"""
+    """
+    Opciones para Visualizador Datos
+
+        Returns:
+            opcion (str): String con la opción elegida
+    """
 
     print("***********Visualizador de Datos***********")
     print()
