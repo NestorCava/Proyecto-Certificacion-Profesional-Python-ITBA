@@ -6,17 +6,35 @@ Esta implementación permite leer datos de una API de finanzas, guardarlos en un
 """
 while True:
     vista.presentacion()
-    opcion = vista.menu_principal()
+    opcion_principal = vista.menu_principal()
 
-    if opcion == "1": #Actualización de Datos
+    if opcion_principal == "1": #Actualización de Datos
         print("Actualización de Datos")
         print()
-        
-    elif opcion == "2": #Visualizador de Datos
-        print("Visualizador de Datos")
-        print()
 
-    elif opcion == "0": #Salida
+    elif opcion_principal == "2": #Visualizador de Datos
+
+        while True:
+            opcion_vista = vista.visualizador_de_datos()
+
+            if opcion_vista == "1": #Visualizar Resumen
+                print("Visualizar Resumen")
+                print()
+        
+            elif opcion_vista == "2": #Gráfico de ticker
+                print("Gráfico de ticker")
+                print()
+
+            elif opcion_vista == "0": #Volver
+                print("Volver")
+                print()
+                break
+        
+            else:
+                print("Opción Incorrecta")
+                print()
+
+    elif opcion_principal == "0": #Salida
         break
 
     else: #Mensaje de Error
