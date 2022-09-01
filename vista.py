@@ -44,3 +44,12 @@ def visualizador_de_datos():
     opcion = input("Ingrese una opción: ")
 
     return opcion
+
+def vista_actualizar_datos():
+    '''Solicita datos para la petición de aggs'''
+
+    ticker=input('Ingrese "ticker": ')
+    fecha_inicio=input("Fecha de Inicio (AAAA-MM-DD): ")
+    fecha_fin=input("Fecha de Inicio (AAAA-MM-DD): ")
+
+    return (ticker,fecha_inicio,fecha_fin)
