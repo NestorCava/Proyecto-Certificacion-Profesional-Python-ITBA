@@ -1,4 +1,5 @@
 import vista
+import financialspolygon
 """
 Analisis de Finanzas
 
@@ -11,6 +12,10 @@ while True:
     if opcion_principal == "1": #Actualización de Datos
         print("Actualización de Datos")
         print()
+
+        aggs = financialspolygon.obtener_datos("AAPL", "2022-08-31", "2022-08-31")
+        for agg in aggs:
+            print(agg)
 
     elif opcion_principal == "2": #Visualizador de Datos
 
