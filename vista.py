@@ -50,6 +50,7 @@ def vista_actualizar_datos():
 
     ticker=input('Ingrese "ticker": ')
     fecha_inicio=input("Fecha de Inicio (AAAA-MM-DD): ")
-    fecha_fin=input("Fecha de Inicio (AAAA-MM-DD): ")
+    fecha_fin=input("Fecha de Fin (AAAA-MM-DD): ")
 
     return (ticker,fecha_inicio,fecha_fin)
+
