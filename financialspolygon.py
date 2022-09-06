@@ -5,6 +5,17 @@ import requests
 import json
 
 def obtener_datos(ticker, fecha_inicio, fecha_fin):
+    '''
+    Obtiene los datos de la API Polygon
+    
+        Param:
+            ticker(str): Valor del ticker que deseamos
+            fecha_inicio(str): Fecha de inicio de los datos (YYYY-MM-DD)
+            fecha_fin(str): Fecha de fin de los datos (YYYY-MM-DD)
+        
+        Return:
+            aggs_lista(lista): lista de tuplas con los datos obtenidos
+    '''
     
     client = RESTClient('fhj7pibsaRPl8kwrMeSjPtL_VDCpi1TX')
 
