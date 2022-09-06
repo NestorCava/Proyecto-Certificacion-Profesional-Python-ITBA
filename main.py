@@ -15,7 +15,6 @@ while True:
         print("Actualización de Datos")
         print()
         ticker, fecha_inicio, fecha_fin = vista.vista_actualizar_datos()
-        #aggs = financialspolygon.obtener_datos("AAPL", "2022-08-31", "2022-08-31")
         aggs = financialspolygon.obtener_datos(ticker, fecha_inicio, fecha_fin)
         
         for agg in aggs:
