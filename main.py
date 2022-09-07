@@ -19,8 +19,11 @@ while True:
         ticker, fecha_inicio, fecha_fin = vista.vista_actualizar_datos()
         aggs = financialspolygon.obtener_datos(ticker, fecha_inicio, fecha_fin)
         
+        print(type(aggs[0]))
         for agg in aggs:
             print(agg)
+        
+        bbdd.guardar_datos(aggs)
 
     elif opcion_principal == "2": #Visualizador de Datos
 
