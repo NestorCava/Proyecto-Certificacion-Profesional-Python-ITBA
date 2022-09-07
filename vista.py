@@ -54,5 +54,17 @@ def visualizador_de_datos():
 
     return opcion
 
+def visualizador_de_datos_resumen():
+    '''Menu Resumen con vistas disponibles'''
+
+    print("*********MENÚ RESUMEN************")
+    print()
+    print("(1) Ticker Cargados")
+    print("(2) Registros Cargados")
+    print("(0) Volver")
+
+    opcion = input("Ingrese una opción: ")
+    return opcion
+
 
 

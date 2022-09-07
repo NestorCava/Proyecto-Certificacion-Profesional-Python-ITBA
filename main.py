@@ -32,6 +32,24 @@ while True:
             if opcion_vista == "1": #Visualizar Resumen
                 print("Visualizar Resumen")
                 print()
+
+                while True:
+                    opcion_resumen = vista.visualizador_de_datos_resumen()
+
+                    if opcion_resumen == "1": #Ticker Cargados
+                        pass
+                    
+                    elif opcion_resumen == "2": #Registros Cargados
+                        pass
+
+                    elif opcion_resumen == "0": #Volver
+                        print("Volver")
+                        print()
+                        break
+
+                    else: 
+                        print("Opción Incorrecta")
+                        print()
         
             elif opcion_vista == "2": #Gráfico de ticker
                 print("Gráfico de ticker")
