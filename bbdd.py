@@ -57,4 +57,25 @@ def guardar_datos(datos):
     finally:
         #Cierre de conexion
         con.close()
- 
+
+def ticker_cargados():
+
+    #Conexión con la base de datos
+    con = sqlite3.connect('datafinancial.db')
+
+    #Creación del cursor
+    cursor = con.cursor()
+    resultado = []
+    try:
+        #Creación de Tablas
+        res = cursor.execute('''SELECT ticker_name,COUNT(ticker_name) 
+                                FROM(financial)
+                                GROUP BY ticker_name;''')
+        resultado = res.fetchone()
+
+    except sqlite3.OperationalError:
+        print("Error al leer datos")
+    finally:
+        #Cierre de conexion
+        con.close() 
+        return resultado
