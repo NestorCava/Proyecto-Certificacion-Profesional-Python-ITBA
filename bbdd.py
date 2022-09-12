@@ -79,3 +79,25 @@ def ticker_cargados():
         #Cierre de conexion
         con.close() 
         return resultado
+
+def registros_cargados():
+
+    #Conexión con la base de datos
+    con = sqlite3.connect('datafinancial.db')
+
+    #Creación del cursor
+    cursor = con.cursor()
+    resultado = []
+    try:
+        #Creación de Tablas
+        res = cursor.execute(('''SELECT * 
+                                FROM financial;'''))
+        
+        resultado = res.fetchall()
+
+    except sqlite3.OperationalError:
+        print("Error al leer datos")
+    finally:
+        #Cierre de conexion
+        con.close() 
+        return resultado

@@ -41,7 +41,10 @@ while True:
                         print(resultado)
                     
                     elif opcion_resumen == "2": #Registros Cargados
-                        pass
+                        resultados = bbdd.registros_cargados()
+                        
+                        for resultado in resultados:
+                            print(resultado)
 
                     elif opcion_resumen == "0": #Volver
                         print("Volver")
