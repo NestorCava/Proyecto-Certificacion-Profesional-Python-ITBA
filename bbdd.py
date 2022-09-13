@@ -68,7 +68,7 @@ def ticker_cargados():
     cursor = con.cursor()
     resultado = []
     try:
-        sql = '''SELECT ticker_name,COUNT(ticker_name) FROM(financial) GROUP BY ticker_name;'''
+        sql = '''SELECT ticker_name,COUNT(ticker_name),MAX(date),MIN(date) FROM(financial) GROUP BY ticker_name;'''
         resultado = pd.read_sql(con=con, sql= sql)
 
     except sqlite3.OperationalError:
