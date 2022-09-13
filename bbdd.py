@@ -68,14 +68,9 @@ def ticker_cargados():
     cursor = con.cursor()
     resultado = []
     try:
-        #Creación de Tablas
-        # res = cursor.execute('''SELECT ticker_name,COUNT(ticker_name) 
-        #                         FROM(financial)
-        #                         GROUP BY ticker_name;''')
-        # resultado = res.fetchone()
         sql = '''SELECT ticker_name,COUNT(ticker_name) FROM(financial) GROUP BY ticker_name;'''
         resultado = pd.read_sql(con=con, sql= sql)
-        
+
     except sqlite3.OperationalError:
         print("Error al leer datos")
     finally:
@@ -92,13 +87,8 @@ def registros_cargados():
     cursor = con.cursor()
     resultado = []
     try:
-        # #Creación de Tablas
-        # res = cursor.execute(('''SELECT * 
-        #                         FROM financial;'''))
-        
-        # resultado = res.fetchall()
-
-        resultado = pd.read_sql(con=con, sql= "SELECT * FROM financial;")
+        sql = "SELECT * FROM financial;"
+        resultado = pd.read_sql(con=con, sql= sql)
 
     except sqlite3.OperationalError:
         print("Error al leer datos")
