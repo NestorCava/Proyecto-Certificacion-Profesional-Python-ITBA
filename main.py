@@ -3,6 +3,7 @@ import financialspolygon
 import bbdd
 from datetime import datetime
 from polygon import RESTClient
+import pandas as pd
 """
 Analisis de Finanzas
 
@@ -43,8 +44,9 @@ while True:
                     elif opcion_resumen == "2": #Registros Cargados
                         resultados = bbdd.registros_cargados()
                         
-                        for resultado in resultados:
-                            print(resultado)
+                        # for resultado in resultados:
+                        #     print(resultado)
+                        print(resultados.head())
 
                     elif opcion_resumen == "0": #Volver
                         print("Volver")

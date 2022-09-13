@@ -1,4 +1,5 @@
 import sqlite3
+import pandas as pd
 
 def crear_tabla():
     '''Crea la Tabla'''
@@ -89,11 +90,13 @@ def registros_cargados():
     cursor = con.cursor()
     resultado = []
     try:
-        #Creación de Tablas
-        res = cursor.execute(('''SELECT * 
-                                FROM financial;'''))
+        # #Creación de Tablas
+        # res = cursor.execute(('''SELECT * 
+        #                         FROM financial;'''))
         
-        resultado = res.fetchall()
+        # resultado = res.fetchall()
+
+        resultado = pd.read_sql(con=con, sql= "SELECT * FROM financial;")
 
     except sqlite3.OperationalError:
         print("Error al leer datos")
