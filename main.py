@@ -39,14 +39,10 @@ while True:
 
                     if opcion_resumen == "1": #Ticker Cargados
                         resultados = bbdd.ticker_cargados()
-                        #print(resultados)
                         print(resultados.head())
                     
                     elif opcion_resumen == "2": #Registros Cargados
                         resultados = bbdd.registros_cargados()
-                        
-                        # for resultado in resultados:
-                        #     print(resultado)
                         print(resultados.head())
 
                     elif opcion_resumen == "0": #Volver
