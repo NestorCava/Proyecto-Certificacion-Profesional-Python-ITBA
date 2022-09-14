@@ -45,7 +45,8 @@ while True:
                         print(resultados.head())
                     
                     elif opcion_resumen == "2": #Registros Cargados
-                        resultados = bbdd.registros_cargados()
+                        #resultados = bbdd.registros_cargados()
+                        resultados = gestor_BD.registros_cargados()
                         print(resultados.head())
 
                     elif opcion_resumen == "0": #Volver

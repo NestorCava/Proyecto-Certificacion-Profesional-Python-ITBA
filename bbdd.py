@@ -89,21 +89,7 @@ class GestorBD(object):
         return self.leer_pandas(sql)
         
 
-def registros_cargados():
+    def registros_cargados(self):
 
-    #Conexión con la base de datos
-    con = sqlite3.connect('datafinancial.db')
-
-    #Creación del cursor
-    cursor = con.cursor()
-    resultado = []
-    try:
         sql = "SELECT * FROM financial;"
-        resultado = pd.read_sql(con=con, sql= sql)
-
-    except sqlite3.OperationalError:
-        print("Error al leer datos")
-    finally:
-        #Cierre de conexion
-        con.close() 
-        return resultado
+        return self.leer_pandas(sql)
