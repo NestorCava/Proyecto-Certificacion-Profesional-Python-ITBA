@@ -23,7 +23,21 @@ class GestorBD(object):
         try:
             self.cursor.execute(sql)
         except sqlite3.OperationalError:
-            pass
+            print("Error al ejecutar sentencia")
+
+    def executemany(self,sql,datos):
+
+        try:
+            self.cursor.executemany(sql,datos)
+        except sqlite3.OperationalError:
+            print("Error al ejecutar sentencia")
+    
+    def commit(self):
+
+        try:
+            self.con.commit()
+        except sqlite3.OperationalError:
+            print("Error al ejecutar sentencia")
 
     def crear_tabla(self):
         '''Crea la Tabla'''
@@ -41,35 +55,23 @@ class GestorBD(object):
                                         transactions REAL NOT NULL);''')
         self.execute(sql)
 
-def guardar_datos(datos):
-    '''Guarda la lista de datos'''
+    def guardar_datos(self,datos):
+        '''Guarda la lista de datos'''
     
-    #Conexión con la base de datos
-    con = sqlite3.connect('datafinancial.db')
-
-    #Creación del cursor
-    cursor = con.cursor()
+        sql = ('''INSERT INTO financial(            
+                                        ticker_name, 
+                                        date, 
+                                        open,
+                                        high,
+                                        low,
+                                        close,
+                                        volume,
+                                        vwap,
+                                        transactions) 
+                VALUES(?,?,?,?,?,?,?,?,?);''')
+        self.executemany(sql,datos)
+        self.commit()
     
-    try:
-        #Creación de Tablas
-        cursor.executemany('''INSERT INTO financial(            
-                                                    ticker_name, 
-                                                    date, 
-                                                    open,
-                                                    high,
-                                                    low,
-                                                    close,
-                                                    volume,
-                                                    vwap,
-                                                    transactions) 
-                                VALUES(?,?,?,?,?,?,?,?,?);''',
-                                datos)
-        con.commit()
-    except sqlite3.OperationalError:
-        print("Datos no agregados")
-    finally:
-        #Cierre de conexion
-        con.close()
 
 def ticker_cargados():
 

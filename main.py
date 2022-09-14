@@ -24,7 +24,8 @@ while True:
         for agg in aggs:
             print(agg)
         
-        bbdd.guardar_datos(aggs)
+        gestor_BD.guardar_datos(aggs)
+        #bbdd.guardar_datos(aggs)
 
     elif opcion_principal == "2": #Visualizador de Datos
 
