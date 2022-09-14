@@ -1,33 +1,45 @@
 import sqlite3
 import pandas as pd
 
-def crear_tabla():
-    '''Crea la Tabla'''
+class GestorBD(object):
+    instance = None
 
-    #Conexión con la base de datos
-    con = sqlite3.connect('datafinancial.db')
+    def __new__(cls, *args, **kargs): 
+        if cls.instance is None:
+            cls.instance = object.__new__(cls, *args, **kargs)
+        return cls.instance
 
-    #Creación del cursor
-    cursor = con.cursor()
+    def __init__(self):
+        self.con =sqlite3.connect('datafinancial.db')
+        self.cursor = self.con.cursor()
+        self.crear_tabla()
     
-    try:
-        #Creación de Tablas 
-        cursor.execute('''CREATE TABLE financial(
-                        ticker_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        ticker_name TEXT NOT NULL, 
-                        date INTEGER NOT NULL, 
-                        open REAL NOT NULL,
-                        high REAL NOT NULL,
-                        low REAL NOT NULL,
-                        close REAL NOT NULL,
-                        volume REAL NOT NULL,
-                        vwap REAL NOT NULL,
-                        transactions REAL NOT NULL);''')
-    except sqlite3.OperationalError:
-        pass
-    finally:
+    def __del__(self):
         #Cierre de conexion
-        con.close()
+        self.con.close()
+    
+    def execute(self,sql):
+
+        try:
+            self.cursor.execute(sql)
+        except sqlite3.OperationalError:
+            pass
+
+    def crear_tabla(self):
+        '''Crea la Tabla'''
+
+        sql = ('''CREATE TABLE financial(
+                                        ticker_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                        ticker_name TEXT NOT NULL, 
+                                        date INTEGER NOT NULL, 
+                                        open REAL NOT NULL,
+                                        high REAL NOT NULL,
+                                        low REAL NOT NULL,
+                                        close REAL NOT NULL,
+                                        volume REAL NOT NULL,
+                                        vwap REAL NOT NULL,
+                                        transactions REAL NOT NULL);''')
+        self.execute(sql)
 
 def guardar_datos(datos):
     '''Guarda la lista de datos'''

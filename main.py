@@ -9,7 +9,8 @@ Analisis de Finanzas
 
 Esta implementación permite leer datos de una API de finanzas, guardarlos en una base de datos y graficarlos
 """
-bbdd.crear_tabla()
+gestor_BD = bbdd.GestorBD()
+#bbdd.crear_tabla()
 while True:
     vista.presentacion()
     opcion_principal = vista.menu_principal()
