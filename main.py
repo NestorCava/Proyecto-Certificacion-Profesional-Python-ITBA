@@ -40,7 +40,8 @@ while True:
                     opcion_resumen = vista.visualizador_de_datos_resumen()
 
                     if opcion_resumen == "1": #Ticker Cargados
-                        resultados = bbdd.ticker_cargados()
+                        #resultados = bbdd.ticker_cargados()
+                        resultados = gestor_BD.ticker_cargados()
                         print(resultados.head())
                     
                     elif opcion_resumen == "2": #Registros Cargados

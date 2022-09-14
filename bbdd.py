@@ -72,25 +72,22 @@ class GestorBD(object):
         self.executemany(sql,datos)
         self.commit()
     
+    def leer_pandas(self,sql):
+        
+        resultado = []
+        try:
+            resultado = pd.read_sql(con=self.con, sql= sql)
 
-def ticker_cargados():
+        except sqlite3.OperationalError:
+            print("Error al leer datos")
+        finally:
+            return resultado
 
-    #Conexión con la base de datos
-    con = sqlite3.connect('datafinancial.db')
+    def ticker_cargados(self):
 
-    #Creación del cursor
-    cursor = con.cursor()
-    resultado = []
-    try:
         sql = '''SELECT ticker_name,COUNT(ticker_name),MAX(date),MIN(date) FROM(financial) GROUP BY ticker_name;'''
-        resultado = pd.read_sql(con=con, sql= sql)
-
-    except sqlite3.OperationalError:
-        print("Error al leer datos")
-    finally:
-        #Cierre de conexion
-        con.close() 
-        return resultado
+        return self.leer_pandas(sql)
+        
 
 def registros_cargados():
 
