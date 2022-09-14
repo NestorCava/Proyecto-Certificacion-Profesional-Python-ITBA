@@ -10,7 +10,7 @@ Analisis de Finanzas
 Esta implementación permite leer datos de una API de finanzas, guardarlos en una base de datos y graficarlos
 """
 gestor_BD = bbdd.GestorBD()
-#bbdd.crear_tabla()
+
 while True:
     vista.presentacion()
     opcion_principal = vista.menu_principal()
@@ -25,7 +25,7 @@ while True:
             print(agg)
         
         gestor_BD.guardar_datos(aggs)
-        #bbdd.guardar_datos(aggs)
+        
 
     elif opcion_principal == "2": #Visualizador de Datos
 
@@ -40,12 +40,12 @@ while True:
                     opcion_resumen = vista.visualizador_de_datos_resumen()
 
                     if opcion_resumen == "1": #Ticker Cargados
-                        #resultados = bbdd.ticker_cargados()
+                        
                         resultados = gestor_BD.ticker_cargados()
                         print(resultados.head())
                     
                     elif opcion_resumen == "2": #Registros Cargados
-                        #resultados = bbdd.registros_cargados()
+                        
                         resultados = gestor_BD.registros_cargados()
                         print(resultados.head())
 
