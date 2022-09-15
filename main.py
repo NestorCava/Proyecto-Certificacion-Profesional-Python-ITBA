@@ -42,12 +42,14 @@ while True:
                     if opcion_resumen == "1": #Ticker Cargados
                         
                         resultados = gestor_BD.ticker_cargados()
-                        print(resultados.head())
+                        print(resultados)
                     
                     elif opcion_resumen == "2": #Registros Cargados
-                        
-                        resultados = gestor_BD.registros_cargados()
-                        print(resultados.head())
+                        ticker = ""
+                        ticker = input("Ingrese un Ticker o presione Enter para contiuar: ")
+                        print(ticker)
+                        resultados = gestor_BD.registros_cargados(ticker)
+                        print(resultados)
 
                     elif opcion_resumen == "0": #Volver
                         print("Volver")
