@@ -89,7 +89,15 @@ class GestorBD(object):
         return self.leer_pandas(sql)
         
 
-    def registros_cargados(self):
+    def registros_cargados(self, ticker=""):
 
-        sql = "SELECT * FROM financial;"
+        if ticker=="":
+            sql = "SELECT * FROM financial;"
+            print(sql)
+        else:
+            sql = (f"SELECT * FROM financial WHERE ticker_name='{ticker}';")
+            print(sql)
+
         return self.leer_pandas(sql)
+    
+

@@ -4,6 +4,7 @@ import bbdd
 from datetime import datetime
 from polygon import RESTClient
 import pandas as pd
+import matplotlib.pyplot as plt
 """
 Analisis de Finanzas
 
@@ -50,6 +51,10 @@ while True:
                         print(ticker)
                         resultados = gestor_BD.registros_cargados(ticker)
                         print(resultados)
+                        plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open","high","low","close"]]))
+                        plt.show()
+                        
+                        
 
                     elif opcion_resumen == "0": #Volver
                         print("Volver")
@@ -63,6 +68,12 @@ while True:
             elif opcion_vista == "2": #Gráfico de ticker
                 print("Gráfico de ticker")
                 print()
+                ticker = ""
+                ticker = input("Ingrese un Ticker o presione Enter para contiuar: ")
+                print(ticker)
+                resultados = gestor_BD.registros_cargados(ticker)
+                plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open","high","low","close"]]))
+                plt.show()
 
             elif opcion_vista == "0": #Volver
                 print("Volver")
