@@ -3,13 +3,15 @@ from os import system
 Modulo para manejar los menu
 """
 ancho_pantalla = 120
+
 def presentacion():
     """Mensaje de Bienvenida"""
     
     system("cls")
     print("*"*ancho_pantalla)
     mensaje = "Bienvenido al Visualizador de Finanzas"
-    print("*"*(int((ancho_pantalla-len(mensaje))/2))+mensaje+"*"*(int((ancho_pantalla-len(mensaje))/2)))
+    print("*"*(int((ancho_pantalla-len(mensaje))/2)) +
+          mensaje+"*"*(int((ancho_pantalla-len(mensaje))/2)))
     print("*"*ancho_pantalla)
     print()
 
@@ -20,8 +22,11 @@ def menu_principal():
         Returns:
             opcion (str): String con la opción elegida
     """
+    mensaje = "MENÚ PRINCIPAL"
     
-    print("*******MENÚ PRINCIPAL****************")
+    print("*"*(int((ancho_pantalla-len(mensaje))/2)) +
+          mensaje+"*"*(int((ancho_pantalla-len(mensaje))/2)))
+    print()
     print("(1) Actualización de Datos")
     print("(2) Visualización de Datos")
     print("(0) Salir")
