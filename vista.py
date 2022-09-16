@@ -1,13 +1,16 @@
+from os import system
 """
 Modulo para manejar los menu
 """
-
+ancho_pantalla = 120
 def presentacion():
     """Mensaje de Bienvenida"""
-
-    print("**************************************")
-    print("Bienvenido al Visualizador de Finanzas")
-    print("**************************************")
+    
+    system("cls")
+    print("*"*ancho_pantalla)
+    mensaje = "Bienvenido al Visualizador de Finanzas"
+    print("*"*(int((ancho_pantalla-len(mensaje))/2))+mensaje+"*"*(int((ancho_pantalla-len(mensaje))/2)))
+    print("*"*ancho_pantalla)
     print()
 
 def menu_principal():
