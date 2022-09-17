@@ -58,27 +58,19 @@ def visualizador_de_datos():
         Returns:
             opcion (str): String con la opción elegida
     """
-
-    print("***********Visualizador de Datos***********")
+    mensaje = "Visualizador de Datos"
+    
+    print("*"*(int((ancho_pantalla-len(mensaje))/2)) +
+          mensaje+"*"*(int((ancho_pantalla-len(mensaje))/2)))
     print()
-    print("(1) Resumen")
-    print("(2) Gráfico de ticker")
+
+    print("(1) Resumen de Ticker Cargados")
+    print("(2) Resumen de Registros Cargados")
+    print("(3) Gráfico de Ticker")
     print("(0) Volver")
 
     opcion = input("Ingrese una opción: ")
 
-    return opcion
-
-def visualizador_de_datos_resumen():
-    '''Menu Resumen con vistas disponibles'''
-
-    print("*********MENÚ RESUMEN************")
-    print()
-    print("(1) Ticker Cargados")
-    print("(2) Registros Cargados")
-    print("(0) Volver")
-
-    opcion = input("Ingrese una opción: ")
     return opcion
 
 

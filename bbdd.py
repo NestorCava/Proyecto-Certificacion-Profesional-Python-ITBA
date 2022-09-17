@@ -100,4 +100,5 @@ class GestorBD(object):
 
         return self.leer_pandas(sql)
     
+    
 

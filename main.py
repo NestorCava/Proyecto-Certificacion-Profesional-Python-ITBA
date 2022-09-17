@@ -42,56 +42,58 @@ while True:
         while True:
             opcion_vista = vista.visualizador_de_datos()
 
-            if opcion_vista == "1": #Visualizar Resumen
-                print("Visualizar Resumen")
-                print()
-
-                while True:
-                    opcion_resumen = vista.visualizador_de_datos_resumen()
-
-                    if opcion_resumen == "1": #Ticker Cargados
+            if opcion_vista == "1": #Resumen de Ticker Cargados
                         
-                        resultados = gestor_BD.ticker_cargados()
-                        print(resultados)
+                resultados = gestor_BD.ticker_cargados()
+                print(resultados)
                     
-                    elif opcion_resumen == "2": #Registros Cargados
-                        ticker = ""
-                        ticker = input("Ingrese un Ticker o presione Enter para contiuar: ")
-                        print(ticker)
-                        resultados = gestor_BD.registros_cargados(ticker)
-                        print(resultados)
-                        plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open","high","low","close"]]))
-                        plt.show()
+            elif opcion_vista == "2": #Resumen de Registros Cargados
                         
+                ticker = ""
+                ticker = (input("Ingrese un Ticker o presione Enter para contiuar: ")).upper()
+                
+                resultados = gestor_BD.registros_cargados(ticker)
+                print(resultados)
+                plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open","high","low","close"]]))
+                plt.show()
                         
-
-                    elif opcion_resumen == "0": #Volver
-                        print("Volver")
-                        print()
-                        break
-
-                    else: 
-                        print("Opción Incorrecta")
-                        print()
-        
-            elif opcion_vista == "2": #Gráfico de ticker
+            elif opcion_vista == "3": #Gráfico de ticker
                 print("Gráfico de ticker")
                 print()
                 ticker = ""
-                ticker = input("Ingrese un Ticker o presione Enter para contiuar: ")
+                ticker = (input("Ingrese un Ticker o presione Enter para contiuar: ")).upper()
                 print(ticker)
                 resultados = gestor_BD.registros_cargados(ticker)
                 plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open","high","low","close"]]))
-                plt.show()
+                plt.show()            
 
             elif opcion_vista == "0": #Volver
                 print("Volver")
                 print()
                 break
-        
-            else:
+
+            else: 
                 print("Opción Incorrecta")
                 print()
+        
+            # elif opcion_vista == "2": #Gráfico de ticker
+            #     print("Gráfico de ticker")
+            #     print()
+            #     ticker = ""
+            #     ticker = input("Ingrese un Ticker o presione Enter para contiuar: ")
+            #     print(ticker)
+            #     resultados = gestor_BD.registros_cargados(ticker)
+            #     plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open","high","low","close"]]))
+            #     plt.show()
+
+            # elif opcion_vista == "0": #Volver
+            #     print("Volver")
+            #     print()
+            #     break
+        
+            # else:
+            #     print("Opción Incorrecta")
+            #     print()
 
     elif opcion_principal == "0": #Salida
         break
