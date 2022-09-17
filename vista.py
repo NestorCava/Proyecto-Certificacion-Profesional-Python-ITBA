@@ -32,11 +32,18 @@ def menu_principal():
     print("(0) Salir")
 
     opcion = input("Ingrese una opción: ")
+    print()
 
     return opcion
 
 def vista_actualizar_datos():
     '''Solicita datos para la petición de aggs'''
+    
+    mensaje = "Actualización de Datos"
+    
+    print("*"*(int((ancho_pantalla-len(mensaje))/2)) +
+          mensaje+"*"*(int((ancho_pantalla-len(mensaje))/2)))
+    print()
 
     ticker=input('Ingrese "ticker": ')
     fecha_inicio=input("Fecha de Inicio (AAAA-MM-DD): ")

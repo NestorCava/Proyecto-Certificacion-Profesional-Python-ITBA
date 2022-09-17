@@ -2,6 +2,7 @@ import vista
 import financialspolygon
 import bbdd
 from datetime import datetime
+from os import system
 from polygon import RESTClient
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -22,10 +23,18 @@ while True:
         ticker, fecha_inicio, fecha_fin = vista.vista_actualizar_datos()
         aggs = financialspolygon.obtener_datos(ticker, fecha_inicio, fecha_fin)
         
-        for agg in aggs:
-            print(agg)
+        print(pd.DataFrame(aggs, columns=["ticker_name","date","open","high","low","close","volume","vwap","transactions"]))
+        # for agg in aggs:
+        #     print(agg)
         
-        gestor_BD.guardar_datos(aggs)
+        guardar = input("¿Desea Guardar los Datos? S/N: ")
+        if guardar.upper() == "S":
+            gestor_BD.guardar_datos(aggs)
+            print("Datos Guardados")
+        else:
+            print("Datos NO Guardados")
+        
+        system("pause")
         
 
     elif opcion_principal == "2": #Visualizador de Datos
