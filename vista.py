@@ -45,7 +45,7 @@ def vista_actualizar_datos():
           mensaje+"*"*(int((ancho_pantalla-len(mensaje))/2)))
     print()
 
-    ticker=input('Ingrese "ticker": ')
+    ticker=(input('Ingrese "ticker": ')).upper()
     fecha_inicio=input("Fecha de Inicio (AAAA-MM-DD): ")
     fecha_fin=input("Fecha de Fin (AAAA-MM-DD): ")
 
