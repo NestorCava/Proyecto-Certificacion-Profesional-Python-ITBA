@@ -75,25 +75,6 @@ while True:
             else: 
                 print("Opción Incorrecta")
                 print()
-        
-            # elif opcion_vista == "2": #Gráfico de ticker
-            #     print("Gráfico de ticker")
-            #     print()
-            #     ticker = ""
-            #     ticker = input("Ingrese un Ticker o presione Enter para contiuar: ")
-            #     print(ticker)
-            #     resultados = gestor_BD.registros_cargados(ticker)
-            #     plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open","high","low","close"]]))
-            #     plt.show()
-
-            # elif opcion_vista == "0": #Volver
-            #     print("Volver")
-            #     print()
-            #     break
-        
-            # else:
-            #     print("Opción Incorrecta")
-            #     print()
 
     elif opcion_principal == "0": #Salida
         break
