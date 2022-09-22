@@ -26,10 +26,8 @@ while True:
         
         datos = pd.DataFrame(aggs, columns=[
               "ticker_name", "date", "open", "high", "low", "close", "volume", "vwap", "transactions"])
-        
-        print(datetime.fromtimestamp(datos['date'][1]/1000))
-        datos['date'] = [datetime.fromtimestamp(d/1000) for d in datos['date']]
-        print()   
+    
+        datos['date'] = [datetime.fromtimestamp(d/1000) for d in datos['date']]  
         print(datos)
         
         guardar = input("¿Desea Guardar los Datos? S/N: ")
@@ -58,6 +56,7 @@ while True:
                 ticker = (input("Ingrese un Ticker o presione Enter para contiuar: ")).upper()
                 
                 resultados = gestor_BD.registros_cargados(ticker)
+                resultados['date'] = [datetime.fromtimestamp(d/1000) for d in resultados['date']]  
                 print(resultados)
                 plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open","high","low","close"]]))
                 plt.show()
