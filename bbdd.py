@@ -60,14 +60,7 @@ class GestorBD(object):
     
         sql = ('''INSERT INTO financial(            
                                         ticker_name, 
-                                        date, 
-                                        open,
-                                        high,
-                                        low,
-                                        close,
-                                        volume,
-                                        vwap,
-                                        transactions) 
+                                        ) 
                 VALUES(?,?,?,?,?,?,?,?,?);''')
         self.executemany(sql,datos)
         self.commit()
