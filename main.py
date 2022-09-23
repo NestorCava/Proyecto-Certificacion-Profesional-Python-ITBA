@@ -70,11 +70,14 @@ while True:
                 print("Gráfico de ticker")
                 print()
                 ticker = ""
-                ticker = (input("Ingrese un Ticker o presione Enter para contiuar: ")).upper()
-                print(ticker)
-                resultados = gestor_BD.registros_cargados(ticker)
-                plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open","high","low","close"]]))
-                plt.show()            
+                ticker = (input("Ingrese un Ticker: ")).upper()
+                if ticker=="":
+                    print("NO ingresó Ticker")
+                    system("pause")
+                else:
+                    resultados = gestor_BD.registros_cargados(ticker)
+                    plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open","high","low","close"]]))
+                    plt.show()            
 
             elif opcion_vista == "0": #Volver
                 print("Volver")
