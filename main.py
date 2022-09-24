@@ -22,7 +22,6 @@ while True:
         print()
         ticker, fecha_inicio, fecha_fin = vista.vista_actualizar_datos()
         aggs = financialspolygon.obtener_datos(ticker, fecha_inicio, fecha_fin)
-        #print(datetime.fromtimestamp(aggs[1][1]),"Date")
         
         datos = pd.DataFrame(aggs, columns=[
               "ticker_name", "date", "open", "high", "low", "close", "volume", "vwap", "transactions"])
