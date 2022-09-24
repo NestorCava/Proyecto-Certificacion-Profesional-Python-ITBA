@@ -88,7 +88,7 @@ class GestorBD(object):
             sql = "SELECT * FROM financial;"
             print(sql)
         else:
-            sql = (f"SELECT * FROM financial WHERE ticker_name='{ticker}';")
+            sql = (f"SELECT * FROM financial WHERE ticker_name='{ticker}' ORDER BY  date;")
             print(sql)
 
         return self.leer_pandas(sql)
