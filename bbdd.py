@@ -85,7 +85,7 @@ class GestorBD(object):
     def registros_cargados(self, ticker=""):
 
         if ticker=="":
-            sql = "SELECT * FROM financial;"
+            sql = "SELECT * FROM financial ORDER BY  ticker_name, date;"
             print(sql)
         else:
             sql = (f"SELECT * FROM financial WHERE ticker_name='{ticker}' ORDER BY  date;")
