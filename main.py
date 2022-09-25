@@ -23,18 +23,21 @@ while True:
         ticker, fecha_inicio, fecha_fin = vista.vista_actualizar_datos()
         aggs = financialspolygon.obtener_datos(ticker, fecha_inicio, fecha_fin)
         
-        datos = pd.DataFrame(aggs, columns=[
-              "ticker_name", "date", "open", "high", "low", "close", "volume", "vwap", "transactions"])
+        if not len(aggs)==0:
+            datos = pd.DataFrame(aggs, columns=[
+                "ticker_name", "date", "open", "high", "low", "close", "volume", "vwap", "transactions"])
     
-        datos['date'] = [datetime.fromtimestamp(d/1000) for d in datos['date']]  
-        print(datos)
+            datos['date'] = [datetime.fromtimestamp(d/1000) for d in datos['date']]  
+            print(datos)
         
-        guardar = input("¿Desea Guardar los Datos? S/N: ")
-        if guardar.upper() == "S":
-            gestor_BD.guardar_datos(aggs)
-            print("Datos Guardados")
+            guardar = input("¿Desea Guardar los Datos? S/N: ")
+            if guardar.upper() == "S":
+                gestor_BD.guardar_datos(aggs)
+                print("Datos Guardados")
+            else:
+                print("Datos NO Guardados")
         else:
-            print("Datos NO Guardados")
+            print("Verifique los datos ingresados")
         
         system("pause")
         
