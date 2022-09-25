@@ -51,13 +51,16 @@ while True:
                         
                 resultados = gestor_BD.ticker_cargados()
                 
-                resultados.rename(columns={"COUNT(ticker_name)":"Count",
-                                           "MAX(date)":"Date Final",
-                                           "MIN(date)":"Date Init"},
-                                  inplace=True)
-                resultados["Date Final"] = [datetime.fromtimestamp(d/1000) for d in resultados["Date Final"]] 
-                resultados['Date Init'] = [datetime.fromtimestamp(d/1000) for d in resultados['Date Init']] 
-                print(resultados)
+                if not resultados.empty:
+                    resultados.rename(columns={"COUNT(ticker_name)":"Count",
+                                               "MAX(date)":"Date Final",
+                                               "MIN(date)":"Date Init"},
+                                      inplace=True)
+                    resultados["Date Final"] = [datetime.fromtimestamp(d/1000) for d in resultados["Date Final"]] 
+                    resultados['Date Init'] = [datetime.fromtimestamp(d/1000) for d in resultados['Date Init']] 
+                    print(resultados)
+                else:
+                    print("No hay datos para mostrar")
                 system("pause")
                     
             elif opcion_vista == "2": #Registros Cargados
@@ -66,8 +69,13 @@ while True:
                 ticker = (input("Ingrese un Ticker o presione Enter para contiuar: ")).upper()
                 
                 resultados = gestor_BD.registros_cargados(ticker)
-                resultados['date'] = [datetime.fromtimestamp(d/1000) for d in resultados['date']]  
-                print(resultados)
+                
+                if not resultados.empty:
+                    resultados['date'] = [datetime.fromtimestamp(d/1000) for d in resultados['date']]  
+                    print(resultados)
+                else:
+                    print("No hay datos para mostrar")
+
                 system("pause")
                         
             elif opcion_vista == "3": #Gráfico de ticker
@@ -80,8 +88,13 @@ while True:
                     system("pause")
                 else:
                     resultados = gestor_BD.registros_cargados(ticker)
-                    plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open","high","low","close"]]))
-                    plt.show()            
+
+                    if not resultados.empty:
+                        plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open","high","low","close"]]))
+                        plt.show()     
+                    else:
+                        print("No hay resultados para mostrar")
+                        system("pause")       
 
             elif opcion_vista == "0": #Volver
                 print("Volver")
