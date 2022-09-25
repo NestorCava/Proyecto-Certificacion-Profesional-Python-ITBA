@@ -58,14 +58,26 @@ class GestorBD(object):
     def guardar_datos(self,datos):
         '''Guarda la lista de datos'''
 
-        registros = self.registros_cargados_por_fecha(datos[0][0],datos[0][1],datos[len(datos)-1][1])
-
-        sql = ('''INSERT INTO financial(            
-                                        ticker_name, 
-                                        ) 
-                VALUES(?,?,?,?,?,?,?,?,?);''')
-        self.executemany(sql,datos)
-        self.commit()
+        datos_depurado = []
+        for d in datos:
+            if (not(self.registros_cargados_por_fecha(d[0],d[1]).empty)):
+                datos_depurado.append(d)
+                
+        if not len(datos_depurado)==0:
+            sql = ('''INSERT INTO financial(            
+                                            ticker_name, 
+                                            date, 
+                                            open,
+                                            high,
+                                            low,
+                                            close,
+                                            volume,
+                                            vwap,
+                                            transactions
+                                            ) 
+                     VALUES(?,?,?,?,?,?,?,?,?);''')
+            self.executemany(sql,datos_depurado)
+            self.commit()
     
     def leer_pandas(self,sql):
         
@@ -93,7 +105,7 @@ class GestorBD(object):
 
         return self.leer_pandas(sql)
     
-    def registros_cargados_por_fecha(self, ticker, fecha_inicio, fecha_fin):
+    def registros_cargados_por_periodo(self, ticker, fecha_inicio, fecha_fin):
 
         if ticker=="":
             sql = (f'''SELECT * FROM financial 
@@ -106,17 +118,17 @@ class GestorBD(object):
 
         return self.leer_pandas(sql)
 
-        def registros_cargados_en_fecha(self, ticker, fecha):
+    def registros_cargados_por_fecha(self, ticker, fecha):
 
-            if ticker=="":
-                sql = (f'''SELECT * FROM financial 
-                           WHERE date='{fecha}'
-                           ORDER BY  ticker_name, date;''')
-            else:
-                sql = (f'''SELECT * FROM financial 
-                           WHERE ticker_name='AAPL' AND date='{fecha}'
-                           ORDER BY  date;''')
+        if ticker=="":
+            sql = (f'''SELECT * FROM financial 
+                        WHERE date='{fecha}'
+                        ORDER BY  ticker_name, date;''')
+        else:
+            sql = (f'''SELECT * FROM financial 
+                       WHERE ticker_name='AAPL' AND date='{fecha}'
+                       ORDER BY  date;''')
 
-            return self.leer_pandas(sql)
+        return self.leer_pandas(sql)
     
 
