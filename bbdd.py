@@ -59,10 +59,15 @@ class GestorBD(object):
         '''Guarda la lista de datos'''
 
         datos_depurado = []
+        
         for d in datos:
-            #if (not(self.registros_cargados_por_fecha(d[0],d[1]).empty)):
-            datos_depurado.append(d)
-                
+            if len(self.cursor.execute("select count(*) from financial").fetchall()) == 0:
+                datos_depurado.append(d)
+                print("Bandera 1")
+            elif len(self.registros_cargados_por_fecha(d[0],d[1]))==0:
+                datos_depurado.append(d)
+                print("Bandera 2")
+        
         if not len(datos_depurado)==0:
             sql = ('''INSERT INTO financial(            
                                             ticker_name, 
@@ -84,7 +89,7 @@ class GestorBD(object):
         resultado = []
         try:
             resultado = pd.read_sql(con=self.con, sql= sql)
-            print("Error al leer datos")
+            #print("Error al leer datos")
         finally:
             return resultado
 
