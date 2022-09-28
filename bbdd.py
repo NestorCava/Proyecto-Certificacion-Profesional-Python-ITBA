@@ -60,8 +60,8 @@ class GestorBD(object):
 
         datos_depurado = []
         for d in datos:
-            if (not(self.registros_cargados_por_fecha(d[0],d[1]).empty)):
-                datos_depurado.append(d)
+            #if (not(self.registros_cargados_por_fecha(d[0],d[1]).empty)):
+            datos_depurado.append(d)
                 
         if not len(datos_depurado)==0:
             sql = ('''INSERT INTO financial(            
@@ -84,8 +84,6 @@ class GestorBD(object):
         resultado = []
         try:
             resultado = pd.read_sql(con=self.con, sql= sql)
-
-        except sqlite3.OperationalError:
             print("Error al leer datos")
         finally:
             return resultado
@@ -113,7 +111,7 @@ class GestorBD(object):
                      ORDER BY  ticker_name, date;''')
         else:
             sql = (f'''SELECT * FROM financial 
-                     WHERE ticker_name='AAPL' AND date BETWEEN '{fecha_inicio}' AND '{fecha_fin}'
+                     WHERE ticker_name='{ticker}' AND date BETWEEN '{fecha_inicio}' AND '{fecha_fin}'
                      ORDER BY  date;''')
 
         return self.leer_pandas(sql)
@@ -126,7 +124,7 @@ class GestorBD(object):
                         ORDER BY  ticker_name, date;''')
         else:
             sql = (f'''SELECT * FROM financial 
-                       WHERE ticker_name='AAPL' AND date='{fecha}'
+                       WHERE ticker_name='{ticker}' AND date='{fecha}'
                        ORDER BY  date;''')
 
         return self.leer_pandas(sql)

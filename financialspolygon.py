@@ -24,7 +24,7 @@ def obtener_datos(ticker, fecha_inicio, fecha_fin):
     print('******AGGS**********')
     aggs_lista = []
     try:
-        aggs = client.get_aggs(ticker, 1, "day", fecha_inicio, fecha_fin)
+        aggs = client.get_aggs(ticker, 1, "minute", fecha_inicio, fecha_fin)
     
         for agg in aggs:
             aggs_lista.append((ticker,
