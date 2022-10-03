@@ -91,8 +91,9 @@ while True:
                     resultados = gestor_BD.registros_cargados(ticker)
 
                     if not resultados.empty:
-                        plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open","high","low","close"]]))
-                        plt.show()     
+                        # plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open","high","low","close"]]))
+                        # plt.show()     
+                        vista.graficar(resultados)
                     else:
                         print("No hay resultados para mostrar")
                         system("pause")       

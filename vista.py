@@ -1,4 +1,6 @@
 from os import system
+import pandas as pd
+import matplotlib.pyplot as plt
 """
 Modulo para manejar los menu
 """
@@ -73,5 +75,8 @@ def visualizador_de_datos():
 
     return opcion
 
+def graficar(resultados):
+    plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open","high","low","close"]]))
+    plt.show()  
 
 
