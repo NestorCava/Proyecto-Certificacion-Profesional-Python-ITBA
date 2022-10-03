@@ -94,7 +94,7 @@ while True:
                     if not resultados.empty:
                         # plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open","high","low","close"]]))
                         # plt.show()     
-                        vista.graficar(resultados)
+                        vista.graficar(resultados, ticker.upper())
                     else:
                         print("No hay resultados para mostrar")
                         system("pause")       

@@ -75,8 +75,12 @@ def visualizador_de_datos():
 
     return opcion
 
-def graficar(resultados):
+def graficar(resultados, ticker):
+
+    
     plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open","high","low","close"]]))
+    plt.title(f"Evolución {ticker}")
+    plt.xticks(rotation=90)
     plt.show()  
 
 
