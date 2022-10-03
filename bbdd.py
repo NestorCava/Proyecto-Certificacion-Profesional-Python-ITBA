@@ -63,10 +63,10 @@ class GestorBD(object):
         for d in datos:
             if len(self.cursor.execute("select count(*) from financial").fetchall()) == 0:
                 datos_depurado.append(d)
-                print("Bandera 1")
+                # print("Bandera 1")
             elif len(self.registros_cargados_por_fecha(d[0],d[1]))==0:
                 datos_depurado.append(d)
-                print("Bandera 2")
+                # print("Bandera 2")
         
         if not len(datos_depurado)==0:
             sql = ('''INSERT INTO financial(            
