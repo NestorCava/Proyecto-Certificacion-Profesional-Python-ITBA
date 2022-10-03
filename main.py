@@ -89,6 +89,7 @@ while True:
                     system("pause")
                 else:
                     resultados = gestor_BD.registros_cargados(ticker)
+                    resultados['date'] = [datetime.fromtimestamp(d/1000) for d in resultados['date']]   
 
                     if not resultados.empty:
                         # plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open","high","low","close"]]))
