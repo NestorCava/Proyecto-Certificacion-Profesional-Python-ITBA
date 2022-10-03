@@ -6,6 +6,7 @@ from os import system
 from polygon import RESTClient
 import pandas as pd
 import matplotlib.pyplot as plt
+
 """
 Analisis de Finanzas
 
@@ -27,9 +28,9 @@ while True:
             datos = pd.DataFrame(aggs, columns=[
                 "ticker_name", "date", "open", "high", "low", "close", "volume", "vwap", "transactions"])
     
-            datos['date'] = [datetime.fromtimestamp(d/1000) for d in datos['date']]  
+            datos['date'] = [datetime.fromtimestamp(d/1000) for d in datos['date']]    
+              
             print(datos)
-        
             guardar = input("¿Desea Guardar los Datos? S/N: ")
             if guardar.upper() == "S":
                 gestor_BD.guardar_datos(aggs)

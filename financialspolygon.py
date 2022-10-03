@@ -32,7 +32,6 @@ def obtener_datos(ticker, fecha_inicio, fecha_fin):
         fecha_fin_2 = fecha_fin_date
         if ((fecha-fecha_fin_date).days>50): fecha_fin_2 += timedelta(50)
         
-        print(fecha_inicio_date.strftime('%Y-%m-%d'))
         try:
             client = RESTClient('fhj7pibsaRPl8kwrMeSjPtL_VDCpi1TX')
             aggs = client.get_aggs(ticker, 1, "minute", 
