@@ -58,17 +58,31 @@ class GestorBD(object):
         self.execute(sql)
 
     def guardar_datos(self,datos):
-        '''Guarda la lista de datos'''
+        """Guarda los datos que no existan en la base de datos
+
+        Args:
+            datos (list): lista con los datos
+        """
 
         datos_depurado = []
+        indice = 0
+        porcentaje = int(100*(0/len(datos)))
         
         for d in datos:
+            indice +=1
+            porcentaje_nuevo = int(100*(indice/len(datos)))
+
+            if  (porcentaje + 5) <= porcentaje_nuevo:
+                porcentaje = porcentaje_nuevo
+                print(porcentaje, "%")
+                
+            #print(d)
             if len(self.cursor.execute("select count(*) from financial").fetchall()) == 0:
                 datos_depurado.append(d)
-                # print("Bandera 1")
+                #print("Bandera 1")
             elif len(self.registros_cargados_por_fecha(d[0],d[1]))==0:
                 datos_depurado.append(d)
-                # print("Bandera 2")
+                #print("Bandera 2")
         
         if not len(datos_depurado)==0:
             sql = ('''INSERT INTO financial(            
