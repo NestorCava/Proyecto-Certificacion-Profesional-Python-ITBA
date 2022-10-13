@@ -88,7 +88,7 @@ def graficar(resultados, ticker):
     """
 
     
-    plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open","high","low","close"]]))
+    plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open"]]))
     plt.title(f"Evolución {ticker}")
     plt.xticks(rotation=90)
     plt.show()  
