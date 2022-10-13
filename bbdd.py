@@ -2,6 +2,8 @@ import sqlite3
 import pandas as pd
 
 class GestorBD(object):
+    """Singleton para el manejo de la base de datos
+    """
     instance = None
 
     def __new__(cls, *args, **kargs): 
@@ -107,7 +109,7 @@ class GestorBD(object):
             list: lista de ticker con un resumen de datos asociados a los mismos. Lista de DataFrame
         """
 
-        sql = '''SELECT ticker_name,COUNT(ticker_name),MAX(date),MIN(date) FROM(financial) GROUP BY ticker_name;'''
+        sql = '''SELECT ticker_name,COUNT(ticker_name),MAX(open),MIN(open),MAX(date),MIN(date) FROM(financial) GROUP BY ticker_name;'''
         return self.leer_pandas(sql)
         
 

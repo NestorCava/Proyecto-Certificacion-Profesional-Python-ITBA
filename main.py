@@ -64,6 +64,8 @@ while True:
                 
                 if not resultados.empty:
                     resultados.rename(columns={"COUNT(ticker_name)":"Count",
+                                               "MAX(open)":"Open Max",
+                                               "MIN(open)":"Open Min",
                                                "MAX(date)":"Date Final",
                                                "MIN(date)":"Date Init"},
                                       inplace=True)
