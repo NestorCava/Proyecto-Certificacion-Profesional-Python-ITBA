@@ -7,7 +7,8 @@ Modulo para manejar los menu
 ancho_pantalla = 120
 
 def presentacion():
-    """Mensaje de Bienvenida"""
+    """Mensaje de Bienvenida
+    """
     
     system("cls")
     print("*"*ancho_pantalla)
@@ -18,8 +19,7 @@ def presentacion():
     print()
 
 def menu_principal():
-    """
-    Opciones del Menú Principal
+    """Opciones del Menú Principal
     
         Returns:
             opcion (str): String con la opción elegida
@@ -39,7 +39,11 @@ def menu_principal():
     return opcion
 
 def vista_actualizar_datos():
-    '''Solicita datos para la petición de aggs'''
+    """Solicita datos para la petición de aggs
+
+    Returns:
+        _type_: _description_
+    """
     
     mensaje = "Actualización de Datos"
     
@@ -76,6 +80,12 @@ def visualizador_de_datos():
     return opcion
 
 def graficar(resultados, ticker):
+    """Visualización de los datos en forma gráfica
+
+    Args:
+        resultados (list): lista con los datos en forma de DataFrame
+        ticker (str): Nombre del ticker que se quiere graficar
+    """
 
     
     plt.plot((resultados.loc[:,"date"]),(resultados.loc[:,["open","high","low","close"]]))

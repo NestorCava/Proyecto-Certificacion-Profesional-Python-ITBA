@@ -85,7 +85,14 @@ class GestorBD(object):
             self.commit()
     
     def leer_pandas(self,sql):
-        
+        """Lee datos de la base de datos según la sentencia sql pasada
+
+        Args:
+            sql (str): sentencia sql
+
+        Returns:
+            list: lista con los valores de la base de datos
+        """
         resultado = []
         try:
             resultado = pd.read_sql(con=self.con, sql= sql)
@@ -94,13 +101,27 @@ class GestorBD(object):
             return resultado
 
     def ticker_cargados(self):
+        """Función para obtener una lista de los ticker cargados y un resumen de datos asociados
+
+        Returns:
+            list: lista de ticker con un resumen de datos asociados a los mismos. Lista de DataFrame
+        """
 
         sql = '''SELECT ticker_name,COUNT(ticker_name),MAX(date),MIN(date) FROM(financial) GROUP BY ticker_name;'''
         return self.leer_pandas(sql)
         
 
     def registros_cargados(self, ticker=""):
+        """Obtiene registros según el ticker pasado.
 
+        Si no se pasa ningun valor de ticker, la función devuelve toda la base de datos
+
+        Args:
+            ticker (str, optional): ticker del que se requiere información. Defaults to "".
+
+        Returns:
+            list: lista de DataFrame con los valores
+        """
         if ticker=="":
             sql = "SELECT * FROM financial ORDER BY  ticker_name, date;"
         else:
@@ -109,6 +130,16 @@ class GestorBD(object):
         return self.leer_pandas(sql)
     
     def registros_cargados_por_periodo(self, ticker, fecha_inicio, fecha_fin):
+        """Devuelve los valores de un período determinado de un ticker determinado
+
+        Args:
+            ticker (str): ticker del que se quiere obtener información
+            fecha_inicio (timestamp): fecha inicial del periodo
+            fecha_fin (timestamp): fecha final del periodo
+
+        Returns:
+            list: lista de DataFrame con los valores
+        """
 
         if ticker=="":
             sql = (f'''SELECT * FROM financial 
@@ -122,6 +153,15 @@ class GestorBD(object):
         return self.leer_pandas(sql)
 
     def registros_cargados_por_fecha(self, ticker, fecha):
+        """Devuelve los valores de una fecha determinada de un ticker determinado
+
+        Args:
+            ticker (str): ticker del que se quiere obtener información
+            fecha (timestamp): fecha de la que se quiere obtener información
+
+        Returns:
+            list: lista de DataFrame con los valores
+        """
 
         if ticker=="":
             sql = (f'''SELECT * FROM financial 

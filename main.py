@@ -18,7 +18,11 @@ while True:
     vista.presentacion()
     opcion_principal = vista.menu_principal()
 
-    if opcion_principal == "1": #Actualización de Datos
+    if opcion_principal == "1": 
+        """
+        Menú para la Actualización de Datos
+        """
+
         print("Actualización de Datos")
         print()
         ticker, fecha_inicio, fecha_fin = vista.vista_actualizar_datos()
@@ -42,13 +46,19 @@ while True:
         
         system("pause")
         
-
-    elif opcion_principal == "2": #Visualizador de Datos
+    
+    elif opcion_principal == "2": 
+        """
+        Menú para la Visualización de los Datos
+        """
 
         while True:
             opcion_vista = vista.visualizador_de_datos()
 
-            if opcion_vista == "1": #Ticker Cargados
+            if opcion_vista == "1": 
+                """
+                Submenú de Visualización para ver los ticker cargados
+                """
                         
                 resultados = gestor_BD.ticker_cargados()
                 
@@ -65,7 +75,10 @@ while True:
                 system("pause")
                     
             elif opcion_vista == "2": #Registros Cargados
-                        
+                """
+                Submenú de Visualización para ver los registros cargados de un ticker
+                """
+
                 ticker = ""
                 ticker = (input("Ingrese un Ticker o presione Enter para contiuar: ")).upper()
                 
@@ -80,6 +93,10 @@ while True:
                 system("pause")
                         
             elif opcion_vista == "3": #Gráfico de ticker
+                """
+                Submenú de Visualización para graficar los registros cargados de un ticker
+                """
+
                 print("Gráfico de ticker")
                 print()
                 ticker = ""
@@ -99,18 +116,30 @@ while True:
                         print("No hay resultados para mostrar")
                         system("pause")       
 
-            elif opcion_vista == "0": #Volver
+            elif opcion_vista == "0":
+                """
+                Opción para volver
+                """
                 print("Volver")
                 print()
                 break
 
             else: 
+                """
+                Mensaje de error cuando la opción elegida en el submenu de visualización es incorrecta
+                """
                 print("Opción Incorrecta")
                 print()
 
-    elif opcion_principal == "0": #Salida
+    elif opcion_principal == "0": 
+        """
+        Opción para Salir
+        """
         break
 
-    else: #Mensaje de Error
+    else: 
+        """
+        Mensaje de Error cuando la opción elegida en el menú principal es incorrecta
+        """
         print("Opción elegida incorrecta")
         print()
